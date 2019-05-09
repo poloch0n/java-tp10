@@ -13,10 +13,20 @@ public class Validator {
 		for(Field f : fields) {
 			for(Annotation a : f.getAnnotations()) {
 				if(a instanceof Rule) {
+
 					double min = ((Rule) a).min();
-					 if(Double.compare((double)f.get(MyObject),min) < 0) {
-						 throw new ValidateException("you need a minimum value of "+min);
-					 }
+					if(Double.compare(-1,min) != 0) {
+						if(Double.compare((double)f.get(MyObject),min) < 0) {
+							throw new ValidateException("you need a minimum value of "+min);
+						}
+					}
+					boolean canBeEmpty = ((Rule) a).empty();
+					if(!canBeEmpty) {
+						if((String)f.get(MyObject) == "") {
+							throw new ValidateException("Le champ "+f.getName()+" ne peux être vide");
+						}
+					}
+
 				}
 			
 			}

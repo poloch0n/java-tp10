@@ -2,10 +2,12 @@ package fr.pizzeria;
 
 import fr.pizzeria.FromMenu;
 import fr.pizzeria.exception.UpdatePizzaException;
+import fr.pizzeria.exception.ValidateException;
 import fr.pizzeria.model.Pizza;
+import fr.pizzeria.utils.Validator;
 
 public class ModifierPizzaService extends MenuService {
-	void executeUc(PizzaMemDao dao) throws UpdatePizzaException{
+	void executeUc(PizzaMemDao dao) throws UpdatePizzaException, ValidateException, IllegalArgumentException, IllegalAccessException{
 		
 		showText("Mise à jour d’une pizza");
 		if(dao.checkMenuEmpty()) {
@@ -19,6 +21,7 @@ public class ModifierPizzaService extends MenuService {
 			throw new UpdatePizzaException("test Le code saisi semble ne correspondre a aucune pizza, pouvez vous réessayer ?\r\n");
 		}
 		Pizza updatedPizza = FromMenu.getInformationPizza();
+		Validator.ToValidate(updatedPizza);
 		dao.updatePizza(code,updatedPizza);
 			
 	}

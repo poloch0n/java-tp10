@@ -10,8 +10,10 @@ import fr.pizzeria.utils.ToString;
 public class Pizza {
 	public int id;
 	@ToString(uppercase = true)
+	@Rule(empty=false)
 	public String code;
 	@ToString(uppercase = true)
+	@Rule(empty=false)	
 	public String libelle;
 	@ToString
 	@Rule(min=0)

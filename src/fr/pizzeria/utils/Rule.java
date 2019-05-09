@@ -9,4 +9,6 @@ import java.lang.annotation.Target;
 @Target({ElementType.FIELD})
 public @interface Rule {
 	public double min() default -1;
+
+	public boolean empty() default false;
 }

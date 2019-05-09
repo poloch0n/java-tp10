@@ -110,7 +110,6 @@ public class PizzaMemDao implements IPizzaDao {
 	public String checkInformationPizza(Pizza pizza, boolean unicity, String methode) {
 		
 		String error = "";
-		error += checkFormatInformationPizza(pizza);
 
 		if(unicity) {
 			error += checkUnicityInformationPizza(pizza,methode);
@@ -119,20 +118,6 @@ public class PizzaMemDao implements IPizzaDao {
 		return error;
 	}
 
-	public String checkFormatInformationPizza(Pizza pizza) {
-		String error = "";
-		if(pizza.code.equals("")) {
-			error += "\r\nLe format du code "+ pizza.code +" est invalide";
-		}
-		if(pizza.libelle.equals("")) {
-			error += "\r\nLe format du libelle " + pizza.libelle + " est invalide";
-		}
-		if(isNegative(pizza.prix)) {
-			error += "\r\nLe format du prix est invalide";
-		}
-		return error;
-	}
-	
 	private String checkUnicityInformationPizza(Pizza pizza,String methode) {
 		String error = "";
 		for (Pizza pizzaSaved : menu) {
